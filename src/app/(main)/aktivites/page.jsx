@@ -1,3 +1,4 @@
+// src/app/(main)/aktivites/page.jsx
 import Aktivite from "@/components/aktivite";
 import Footer from "@/components/Footer";
 import { serverFetch } from "@/lib/server-fetch";

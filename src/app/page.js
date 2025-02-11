@@ -1,3 +1,4 @@
+// src/app/page.js
 import Image from "next/image";
 import logo from "../assets/Logo.png"
 import Link from "next/link";

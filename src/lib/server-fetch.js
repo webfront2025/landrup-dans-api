@@ -1,3 +1,4 @@
+// server-fetch.js
 export async function serverFetch(url) {
 	try {
 		const response = await fetch(url)

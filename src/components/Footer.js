@@ -1,3 +1,4 @@
+// src/components/Footer.js
 import Image from "next/image";
 import home from "../assets/home.png";
 import search from "../assets/search.png";
