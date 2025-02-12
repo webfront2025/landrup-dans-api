@@ -15,9 +15,9 @@ export default function Footer() {
       <Link href="/search">
       <Image src={search} width={22} height={20} alt="search" />
       </Link>
-      {/* <Image className="absolute bg-orange-500" src={wifi} width={22} height={20} alt="wifi" /> */}
+      <Link href="/kalender">
       <Image src={kalender} width={22} height={20} alt="kalender" />
-      {/* </div> */}
+      </Link>
     </footer>
   );
 }
