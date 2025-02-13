@@ -1,3 +1,4 @@
+// src/app/(main)/aktivites/[id]/page.jsx
 import { serverFetch } from "@/lib/server-fetch";
 import Image from "next/image";
 import Footer from "@/components/Footer";

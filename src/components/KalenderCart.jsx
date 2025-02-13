@@ -1,4 +1,4 @@
-// src/components/aktivite.jsx
+// src/components/KalenderCart.jsx
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
