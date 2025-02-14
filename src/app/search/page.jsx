@@ -6,10 +6,15 @@ import SearchForm from "@/components/SearchForm";
 import { serverFetch } from "@/lib/server-fetch";
 
 
-export default async function searchPage({searchParams}) {
-    let searchQuery = searchParams?.searchResult
-  let alleAktiviter = await serverFetch("http://localhost:4000/api/v1/activities");
+// export default async function searchPage({searchParams}) {
+//     let searchQuery = searchParams?.searchResult
+//   let alleAktiviter = await serverFetch("http://localhost:4000/api/v1/activities");
  
+export default async function searchPage({ searchParams }) {
+  const params = await searchParams;  //  Await before using searchParams
+  let searchQuery = params?.searchResult;
+
+  let alleAktiviter = await serverFetch("http://localhost:4000/api/v1/activities");
 
   if(searchQuery){
     alleAktiviter= alleAktiviter.filter(activity=> activity.name.toLowerCase().includes(searchQuery.toLowerCase()));

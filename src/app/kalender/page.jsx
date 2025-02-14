@@ -62,8 +62,13 @@ export default async function kalenderPage() {
   const token = cookieStore.get("landrup_token");
   const userId = cookieStore.get("landrup_userid");
 
+  if (!token || !userId) {
+    console.error("Missing authentication token or user ID.");
+    return <p className="text-white ml-12">Authentication error. Please log in.</p>;
+  }
+
   try {
-    // Fetch user data
+    // Fetch instructor data
     const userRes = await fetch(`http://localhost:4000/api/v1/users/${userId.value}`, {
       method: "GET",
       headers: {
@@ -71,11 +76,9 @@ export default async function kalenderPage() {
       },
     });
 
-    // Read response as text (for debugging)
     const userText = await userRes.text();
     console.log("Raw User API Response:", userText);
 
-    // Check if response is valid JSON
     let userData;
     try {
       userData = JSON.parse(userText);
@@ -86,40 +89,48 @@ export default async function kalenderPage() {
     console.log("Parsed User Data:", userData);
 
     const isInstructor = userData.role === "instructor";
+    const instructorName = `${userData.firstname} ${userData.lastname}`;
     let filteredStudents = [];
 
+    // If user is an instructor, fetch students
     if (isInstructor) {
-      // Fetch all users
-      const studentsRes = await fetch(`http://localhost:4000/api/v1/users`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token.value}`,
-        },
-      });
+      console.log(`Instructor detected: ${instructorName}. Fetching students...`);
 
-      // Read response as text (for debugging)
-      const studentsText = await studentsRes.text();
-      console.log("Raw Students API Response:", studentsText);
-
-      let allUsers;
       try {
-        allUsers = JSON.parse(studentsText);
+        const studentsRes = await fetch(`http://localhost:4000/api/v1/users`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token.value}`,
+          },
+        });
+
+        const studentsText = await studentsRes.text();
+        console.log("Raw Students API Response:", studentsText);
+
+        if (!studentsRes.ok) {
+          throw new Error(`Failed to fetch students. Status: ${studentsRes.status}`);
+        }
+
+        const allUsers = JSON.parse(studentsText);
+        console.log("Parsed Students Data:", allUsers);
+
+        // Filter only students
+        filteredStudents = allUsers.filter(user => user.role === "student");
+
+        if (filteredStudents.length === 0) {
+          console.log("No students found.");
+        }
       } catch (error) {
-        throw new Error("Students API did not return valid JSON.");
+        console.error("Error fetching students:", error);
       }
-
-      console.log("Parsed Students Data:", allUsers);
-
-      // Filter students who are in the same class
-      filteredStudents = allUsers.filter(
-        (user) => user.role === "student" && user.classId === userData.classId
-      );
     }
 
     return (
       <>
         <div className="w-full h-screen bg-[#5E2E53]">
           <h1 className="text-white text-[36px] ml-12">Kalender</h1>
+          <h2 className="text-white ml-12">Welcome, {instructorName}</h2> {/* Show instructor's name */}
           <ul>
             {isInstructor
               ? filteredStudents.map((student) =>
@@ -140,6 +151,7 @@ export default async function kalenderPage() {
     return <p className="text-white ml-12">Failed to load data. Please check API.</p>;
   }
 }
+
 
 
 
