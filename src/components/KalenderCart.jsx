@@ -24,7 +24,7 @@ export default async function Aktivite({ aktivites, isInstructor }) {
   } else {
     return (
       <li>
-        <div className="flex  flex-col m-5 p-5 text-black --font-sans: ui-sans-serif, system-ui, sans-serif,ubuntu   rounded-[0.5em] bg-white  h-[30%]">
+        <div className="flex  flex-col m-5 p-5 text-black  rounded-[0.5em] bg-white  h-[30%]">
           <div className="text-[36px] overflow-hidden text-ellipsis whitespace-nowrap">
             {aktivites.name}
           </div>

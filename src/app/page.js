@@ -2,6 +2,13 @@
 import Image from "next/image";
 import logo from "../assets/Logo.png"
 import Link from "next/link";
+import { Roboto } from "next/font/google";
+// import "./global.css";
+
+const roboto = Roboto({
+  weight:'400',
+  subsets: ['latin']
+})
 export default function Home() {
 return(
  

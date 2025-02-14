@@ -7,12 +7,13 @@ export default async function HoldOversigtPage({ params }) {
   const token = cookieStore.get("landrup_token");
 
   try {
-    const res = await fetch(`http://localhost:4000/api/v1/activities/${id}/roster`, {
+    const res = await fetch(`http://localhost:4000/api/v1/activities/${id}/roster/${activitiesid}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token.value,
       },
     });
+console.log(res);
 
     const data = await res.json();
 
