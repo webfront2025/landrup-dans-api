@@ -1,76 +1,48 @@
-# 📌 Dokumentation for Din Mægler  
+# Dokumentation for Landrup Dans.
 
-**Forfatter:** Mansoureh Safarian Toosi, WU11  
-
-Jeg har valgt at lægge min opgave på nettet. Se den her:  
-🔗 [https://briansmaegler.onrender.com](https://briansmaegler.onrender.com)  
+**Forfatter:** Mansoureh Safarian Toosi, WU11 
 
 ---
 
-## 🔑 Brugere til systemet  
+## Brugere til systemet
 
-| Brugernavn  | Adgangskode |
-|-------------|------------|
-| minnyebruger | 1234       |
-
----
-
-## 🚀 Tech-stack  
-
-### **Frontend**  
-- **[Next.js](https://nextjs.org)**  
-  Jeg har valgt Next.js, fordi det giver server-side rendering (SSR) og statisk site generation (SSG), hvilket forbedrer ydeevnen (performance)og SEO. Det har også en god filbaseret routing og support for API-routes, hvilket gør det til et godt valg for både små og store projekter.
-  ### **1. Ydeevne (performance)** 
-  ### **2 Sikkerhed** 🔐 
-  ### **3. SEO** 🔍
-### 
-- **Next.js API Routes** 
-  Next.js giver mulighed for at bygge API'er direkte i projektet, hvilket reducerer behovet for en separat backend.
-
-## ❌ **Ulemper ved Next.js**  
-
-### **1. Kompleksitet i Store Projekter** 🏗  
-- Next.js kan være komplekst at arbejde med i store applikationer, især hvis SSR og SSG kombineres forkert.  
-
-### **2. Hosting Begrænsninger** ☁  
-- Selvom Vercel er den anbefalede hostingplatform, kan det være dyrt for større projekter. Alternative platforme som Netlify og AWS kan kræve ekstra konfiguration.  
-
-### **3. Byggetid på Store Applikationer** ⏳  
-- SSG kan føre til lange byggetider, hvis der er mange sider, især med dynamiske data.  
+| id | username | password | age | role |
+| --- | --- | --- | --- | --- |
+| 1 | instructor1 | 1234 | 24 | instructor |
+| 2 | instructor2 | 1234 | 32 | instructor |
+| 3 | instructor3 | 1234 | 27 | instructor |
+| 4 | instructor4 | 1234 | 31 | instructor |
+| 5 | user1 | 1234 | 14 | default |
+| 6 | user2 | 1234 | 17 | default |
+| 7 | user3 | 1234 | 21 | default |
+| 8 | user4 | 1234 | 24 | default |
+| 9 | user5 | 1234 | 52 | default |
+| 10 | user6 | 1234 | 51 | default |
 
 ---
+## Tech-Stack
+* [**NextJS**](https://nextjs.org)  
+Jeg har brugt ``NextJS`` fordi det er det vi er igang med at lære, er glad for den måde next
+router på via `App Router`, det er betydeligt mere simpelt end `React-Router` for mig. `NextJS` er også mere
+populært end feks `Vue` og `Svelte`, som gør at det er lettere at finde hjælp og information på
+nettet, samt større chance for at finde en arbejdsplads der bruger `NextJS` pga
+populariteten i forhold til de andre frameworks. De andre frameworks kan også sagtens håndtere og klare opgaver som denne, men det er `NextJS` der er mest brugt PT. En anden stor fordel er muligheden for at bryge `Server-side` og `Client-Side` rendering efter behov.
 
-- **[Tailwind CSS](https://tailwindcss.com/)**  
-  Tailwind er valgt for dets utility-first tilgang, som gør styling fleksibel og effektiv uden behov for eksterne CSS-filer.  
+* [**TailwindCSS**](https://tailwindcss.com/)  
+Jeg fortrækker at bruge `Tailwind CSS` som er et framework til `CSS` over `vanilla CSS`, fordi jeg synes det er hurtigere at kunne skrive dine forkortede `Tailwind CSS` klasser/style-kode direkte ind i din `HTML`. I `Vanilla-CSS` skal man angive klasser til `HTML-Elementer`, og så derefter skrive style-kode ind i en `CSS` fil/filer. `Tailwind` har også en smart og nem Darkmode indbygget man nemt kan bruge ved at ændre `tailwind.config` filen.
 
-- **[React Icons](https://react-icons.github.io)**  
-  Dette bibliotek bruges til at inkludere ikoner på en enkel og skalerbar måde.  
+* [**Zod**](https://zod.dev/)  
+Jeg har valgt at bruge ``Zod`` biblioteket til form validering. Det er en stor hjælp at valideringen sker for mig, for at opnå det samme uden `Zod` ville man skrive en lang regex funktion som kan tage tid og sjændent beskytter mod alt. Dette håndtere ``Zod`` for mig hvilket er en stor QoL. Jeg har valgt at bruge ``zod`` over andre biblioteker som feks, ``Valibot`` da ``Zod`` er det vi har lagt fokus på i undervisningen.
 
-  
+* [**React Icons**](https://react-icons-github.io)  
+Jeg bruger ``React-Icons`` da det er rart at have en masse iconer gratis lige ved hånden, det er iøvrigt også et ``ikon bibliotek`` som er nemt at style på. Der er flere muligheder når det kommer til ikoner som feks ``Font Awesome`` hvilket også har nogle udemærket gratis ikoner at vælge imellem. Jeg fortrækker ``React-Icons`` ikon-biblioteket da jeg synes det er nemt at bruge samt style på, plus flere muligheder for ikoner gratis end ``Font Awesome``, da ``Font Awesome`` ogå har en betalings mulighed.
 
----
+## Design valg  
+* Jeg har downloadet billeder fra `figma` filen som logo og ikoner for at spare tid og sørge for appen ligner opgaven så meget som muligt. 
 
-## 📂 Projektstruktur  
+* har sørget for teksten passer i kalenderen da jeg føler det var unødvendigt at de fyldte ud fra kortet og at det er pænere at de ikke gør.  
 
-Nedenfor er en oversigt over de vigtigste sider, komponenter og API-routes i projektet.  
-
-### **📄 Sider** (`/src/pages/`)  
-- **`index.tsx` (Forside)** – Viser hovedlisten over ejendomme og søgefiltre.  
-- **`dashboard.tsx` (Dashboard)** – Viser brugerens specifikke data og giver mulighed for ejendomsadministration.  
-- **`login.tsx` (Login-side)** – Håndterer brugergodkendelse via Firebase.  
-- **`profile.tsx` (Profilside)** – Viser og redigerer brugerens oplysninger.  
-
-### **🧩 Komponenter** (`/src/components/`)  
-- **`PropertyCard.tsx` (Ejendomskort)** – En genanvendelig komponent, der viser oplysninger om en ejendom.  
-- **`Navbar.tsx` (Navigationsmenu)** – Indeholder navigation og håndterer brugerens login-status.  
-- **`Footer.tsx` (Footer)** – Viser oplysninger og links i bunden af siden.  
-- **`SearchBar.tsx` (Søgefelt)** – En søgekomponent, der filtrerer ejendomme baseret på brugerinput.  
-
-### **🌐 API-routes** (`/src/pages/api/`)  
-- **`auth.ts` (Autentifikation)** – Håndterer bruger-login og logout.  
-- **`properties.ts` (Ejendomsdata)** – Henter ejendomsoplysninger fra databasen.  
-- **`user.ts` (Brugeroplysninger)** – Returnerer brugerens oplysninger og opdaterer data.  
-- **`contact.ts` (Kontaktformular API)** – Håndterer kontaktformularens forespørgsler og sender dem til databasen.  
+* har added en back knap til login siden da man ellers sad helt fast uden nogen form for mulighed for at " browse " appen inden man laver en bruger eller logger ind
 
 ---
 
