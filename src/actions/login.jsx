@@ -12,6 +12,7 @@ export default async function Login(prevState, formData) {
 	const schema = z.object({
 		username: z.string().min(1, { message: "Du skal udfylde et brugernavn" }),
 		password: z.string().min(1, { message: "Du skal udfylde et password" })
+		// username: z.string().min(1, { message: "Du skal udfylde et brugernavn" }).email({message:"udfylde email"}),
 	})
 
 	const validate = schema.safeParse({ username, password })
@@ -49,6 +50,13 @@ export default async function Login(prevState, formData) {
 	} catch (error) {
 		throw new Error(error)
 	}
-	redirect("/kalender")
+	const cookieStore = await cookies()
+    const role = cookieStore.get("landrup_role")
+	if (role.value === "instructor") {
+        redirect("/kalender/instructor")
+    }else {
+        redirect("/kalender")
+    }
 }
+
 

@@ -1,34 +1,30 @@
 // src/app/(main)/aktivites/[id]/page.jsx
 import { serverFetch } from "@/lib/server-fetch";
+import { cookies } from "next/headers";
 import Image from "next/image";
+import RegisterButton from "@/components/RegisterButton";
 import Footer from "@/components/Footer";
 
 export default async function generateMetadata({ params }) {
 	const aktId = (await params).id
-console.log(aktId);
-
-  
+// console.log(aktId);
   
   // Fetch activity details
   const aktivites = await serverFetch(`http://localhost:4000/api/v1/activities/${aktId}`);
-  console.log(aktivites);
-	/* const response = await fetch("https://fiktivapi.com/produkter/" + produktId)
-	const data = await response.json() */
-// 	const data = {
-// 		aktName: "Dims",
-// 	}
-// 	return {
-// 		title: data.productName
-// 	}
-// }
-// export default async function Produkt({ params }) {
-// 	return (
-// 		<h1>Nu vises produkt med ID {/* params.produktId */}</h1>
-// 	)
-// }
+  // console.log(aktivites);
+  const cookieStore = await cookies();
+  const token = cookieStore.get("landrup_token");
+  const userid = cookieStore.get("landrup_userid");
+  const role = cookieStore.get("landrup_role");
+
+  const minAge = aktivites.minAge;
+  const maxAge = aktivites.maxAge;
+  const date = aktivites.weekday;
+  const name = aktivites.name;
+
 return (
     <>
-    <div className="">
+    <main className="">
       {/* Activity Image with Tilmeld Button */}
       <div className="relative w-full h-[20em] rounded-lg overflow-hidden">
         <Image 
@@ -38,22 +34,80 @@ return (
           className="w-full h-full object-cover rounded-lg"
           alt={aktivites.name}
         />
-        <button className="absolute bottom-4 w-[11em] left-1/3 transform -translate-x-1/2b bg-[#5E2E53] text-white py-2 px-5 rounded-lg">
-          Tilmeld
-        </button>
+        {/* <button className="absolute bottom-4 w-[11em] left-1/3 transform -translate-x-1/2b bg-[#5E2E53] text-white py-2 px-5 rounded-lg">
+          Tilmeld</button> */}
+          {userid && token ? <RegisterButton name={name} date={date} maxAge={maxAge} minAge={minAge} 
+          role={role.value} userid={userid.value} token={token.value} id={aktivites.id} /> :
+          null}
       </div>
 
       {/* Activity Details */}
       <div className="mt-5 p-3 text-white ">
-        <h1 className="text-xl font-bold">{aktivites.name}</h1>
-        <p className="">{aktivites.minAge}-{aktivites.maxAge} år</p>
-        <p className="mt-2">{aktivites.description}</p>
+      <h2 className="text-xl font-bold">{aktivites.name}</h2>
+          <p className="text-l">{aktivites.minAge}-{aktivites.maxAge} år</p>
+          <p className="text-l">{aktivites.weekday} kl {aktivites.time}</p>
+          <span className="mt-2 text-l">{aktivites.description}</span>
       </div>
-    </div>
-     <Footer />
+    </main>
+     {/* <Footer /> */}
      </>
   );
 }
+// // src/app/(main)/aktivites/[id]/page.jsx
+// import { serverFetch } from "@/lib/server-fetch";
+// import { cookies } from "next/headers";
+// import Image from "next/image";
+// import RegisterButton from "@/components/RegisterButton";
+// import Footer from "@/components/Footer";
+
+// export default async function generateMetadata({ params }) {
+//   const  {aktId}  = await params?.id;
+//   // const aktId = await params?.id;
+//   // console.log(aktId);
+
+//   // Fetch activity details
+//   const aktivites = await serverFetch(`http://localhost:4000/api/v1/activities/${aktId}`);
+//   // console.log("Details:", aktivites);
+
+//   const cookieStore = await cookies();
+//   const token = cookieStore.get("landrup_token");
+//   const userid = cookieStore.get("landrup_userid");
+//   const role = cookieStore.get("landrup_role");
+
+//   const minAge = aktivites.minAge;
+//   const maxAge = aktivites.maxAge;
+//   const date = aktivites.weekday;
+//   const name = aktivites.name;
+//   return (
+//     <>
+//       <main className="">
+//         {/* Activity Image with Tilmeld Button */}
+//         <div className="relative w-full h-[20em] rounded-lg overflow-hidden">
+//           <Image
+//             src={aktivites.asset.url}
+//             width={600}
+//             height={300}
+//             className="w-full h-full object-cover rounded-lg"
+//             alt={aktivites.name}
+//           />
+//           {userid && token ? <RegisterButton name={name} date={date} maxAge={maxAge} minAge={minAge} role={role.value} userid={userid.value} token={token.value} id={data.id} /> :
+//           null}
+//         </div>
+
+//         {/* Activity Details */}
+//         <div className="mt-5 p-3 text-white ">
+//           <h2 className="text-xl font-bold">{aktivites.name}</h2>
+//           <span className="text-l">
+//             {aktivites.minAge}-{aktivites.maxAge} år
+//           </span>
+//           <span className="text-l">{aktivites.weekday} kl {aktivites.time}</span>
+//           <span className="mt-2 text-l">{aktivites.description}</span>
+//         </div>
+//       </main>
+//       <Footer />
+//     </>
+//   );
+// }
 
 
 // import { serverFetch } from "@/lib/server-fetch";

@@ -5,7 +5,7 @@ import { serverFetch } from "@/lib/server-fetch";
 
 export default async function aktivity() {
   const data = await serverFetch("http://localhost:4000/api/v1/activities");
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
@@ -17,7 +17,7 @@ export default async function aktivity() {
           ))}
         </ul>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

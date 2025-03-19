@@ -19,7 +19,7 @@ export default async function searchPage({ searchParams }) {
   if(searchQuery){
     alleAktiviter= alleAktiviter.filter(activity=> activity.name.toLowerCase().includes(searchQuery.toLowerCase()));
   }
-console.log(alleAktiviter.name);
+console.log(alleAktiviter);
 
   return (
     <>
@@ -37,7 +37,7 @@ console.log(alleAktiviter.name);
           )}
         </ul>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

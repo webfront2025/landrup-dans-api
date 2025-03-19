@@ -3,6 +3,7 @@
 
 import Login from "@/actions/login"
 import { useActionState, useEffect } from "react"
+import Link from "next/link";
 
 export default function LoginForm() {
   const [formState, formAction, isPending] = useActionState(Login, null)
@@ -36,7 +37,7 @@ export default function LoginForm() {
           defaultValue={formState?.formData?.password}
           type="password"
           name="password"
-          className="w-full px-4 py-2  border border-gray-100  bg-white text-black placeholder-white focus:outline-none focus:ring-2"
+          className="w-[90%] px-4 py-2  border border-gray-300 bg-white/20 text-gray placeholder-gray-200 focus:outline-none focus:ring-2"
           placeholder="adgangskode"
         />
         <span className="text-red-400 text-sm">{formState?.errors?.password?._errors[0]}</span>
@@ -48,6 +49,11 @@ export default function LoginForm() {
         className=" flex justify-center w-[90%] py-2 bg-[#5E2E53] hover:bg-[#5E2E53] disabled:bg-gray-500 text-white rounded-xl text-lg font-semibold transition">
         {isPending ? "Logger ind..." : "Log ind"}
       </button>
+      <Link href="/register" className="text-[#EAEAEA] bg-[#5E2E53] rounded-lg w-[90%] flex justify-center items-center h-[3rem] my-2">Registrer ny bruger</Link>
+                <label className="w-full flex justify-center items-center mb-6">
+                    <span className=" text-[#EAEAEA] text-[1.1rem] mr-2">Husk Mig</span>
+                    <input name="box" className="h-5 w-5" type="checkbox" />
+                </label>
     </form>
   )
 }
