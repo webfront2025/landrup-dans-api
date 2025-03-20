@@ -49,7 +49,7 @@ export default function LoginForm() {
         className=" flex justify-center w-[90%] py-2 bg-[#5E2E53] hover:bg-[#5E2E53] disabled:bg-gray-500 text-white rounded-xl text-lg font-semibold transition">
         {isPending ? "Logger ind..." : "Log ind"}
       </button>
-      <Link href="/register" className="text-[#EAEAEA] bg-[#5E2E53] rounded-lg w-[90%] flex justify-center items-center h-[3rem] my-2">Registrer ny bruger</Link>
+      <Link href="/register" className="text-white bg-[#5E2E53] rounded-xl w-[90%] flex justify-center items-center  my-2">Registrer ny bruger</Link>
                 <label className="w-full flex justify-center items-center mb-6">
                     <span className=" text-[#EAEAEA] text-[1.1rem] mr-2">Husk Mig</span>
                     <input name="box" className="h-5 w-5" type="checkbox" />

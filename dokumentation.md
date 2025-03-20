@@ -42,8 +42,6 @@ Jeg bruger ``React-Icons`` da det er rart at have en masse iconer gratis lige ve
 
 * har sørget for teksten passer i kalenderen da jeg føler det var unødvendigt at de fyldte ud fra kortet og at det er pænere at de ikke gør.  
 
-* har added en back knap til login siden da man ellers sad helt fast uden nogen form for mulighed for at " browse " appen inden man laver en bruger eller logger ind
-
 ---
 
 ## Kode-eksempel
