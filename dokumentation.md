@@ -1,6 +1,6 @@
 # Dokumentation for Landrup Dans.
 
-**Forfatter:** Mansoureh Safarian Toosi, WU11 
+**Forfatter:** 
 
 ---
 
